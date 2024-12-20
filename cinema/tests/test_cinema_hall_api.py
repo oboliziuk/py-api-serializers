@@ -116,9 +116,13 @@ class CinemaHallApiTests(TestCase):
         self.assertEqual(CinemaHall.objects.get(id=1).name, "Green")
 
     def test_delete_cinema_hall(self):
+        print("Before DELETE request:", CinemaHall.objects.all())
         response = self.client.delete(
             "/api/cinema/cinema_halls/1/",
         )
+        print("After DELETE request:", CinemaHall.objects.all())  # Друкуємо всі об'єкти
+        print("Count of CinemaHall with id=1:",
+              CinemaHall.objects.filter(id=1).count())  # Друкуємо кількість об'єктів з id=1
         db_cinema_halls_id_1 = CinemaHall.objects.filter(id=1)
         self.assertEqual(db_cinema_halls_id_1.count(), 0)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
