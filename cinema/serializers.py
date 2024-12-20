@@ -65,7 +65,7 @@ class MovieSessionListSerializer(MovieSessionSerializer):
     cinema_hall_name = serializers.SlugRelatedField(
         source="cinema_hall", slug_field="name", read_only=True
     )
-    cinema_hall_capacity = serializers.SlugRelatedField(
+    cinema_hall_capacity = serializers.ReadOnlyField(
         source="cinema_hall", slug_field="capacity", read_only=True
     )
 
